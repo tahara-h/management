@@ -1,0 +1,82 @@
+a {
+    text-decoration: none;
+  }
+body{
+    margin:0px;
+}
+header{
+    height: 40px;
+    background-color: cornflowerblue;
+    display:flex;
+    align-items:center;
+    position: relative;
+    color:aliceblue;
+    font-size: 25px;
+}
+.system_title{
+    margin-left: 10px;
+}
+.user_name{
+    margin-right:140px;
+    position: absolute;
+    right: 0px;
+}
+.login{
+    margin-top: 0px;
+    margin-right:10px;
+    position: absolute;
+    right: 0px;
+    color:aliceblue;
+}
+main{
+    display:flex;
+}
+.left_menu{
+    min-height:600px;
+    border-right:1px solid #000;
+    display:flex;
+    flex-flow: column;
+}
+li{
+    height:30px;
+    width: 150px;
+    display:flex;
+    align-items: center;
+    font-size:20px;
+    padding-left:10px;
+}
+span{
+    display:flex;
+    color:#000;
+}
+.content_list{
+    display:flex;
+    flex-direction: column;
+}
+.content_box{
+    display:flex;
+    margin: 10px 10px 10px 10px;
+    height:80px;
+}
+.content_name{
+    font-size: 20px;
+}
+/* bootstrapのちょっとした変更 */
+.w-h{
+    width: 120px !important;
+    height: 40px !important;
+    border: 0px none;
+}
+.radius{
+    border-radius: 0px;
+    color: #000;
+}
+.content_box_small{
+    width:120px;
+    height:40px;
+    margin:40px 10px 10px 10px;
+    text-align: center;
+    padding:4px 0;
+    /* background-color:#0080ff; */
+    /* color: #ffffff; */
+}

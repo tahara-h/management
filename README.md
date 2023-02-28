@@ -79,7 +79,7 @@ Laravel関連のコマンドはDockerで用意した、WEBサーバー（コン�
 ```bash
 # ターミナルで実行
 ## WEBサーバーに入るコマンド（-itの後に入る名称はコンテナ名「{NAME_PREFIX}-web」）
-docker exec -it laravel9-web bash
+docker exec -it management-web bash
 ```
 
 VSCodeの[Docker拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)が入っている場合、対象コンテナの「Attach Shell」でも開けます。  
