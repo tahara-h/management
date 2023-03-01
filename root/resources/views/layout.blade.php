@@ -13,8 +13,12 @@
 <body>
     <header>
         <div class=system_title>Web日報登録</div>
-        <div class=user_name>名前:</div>
-        <a href="" class=login>ログアウト<a>
+        <!-- Authを使用してログインしたユーザーを表示「Models/User.phpの中を参照してある」 -->
+        <div class=user_name>名前:{{Auth::user()->last_name}}{{Auth::user()->first_name}}</div>
+        <form method="post" name="form1" action="{{route('logout')}}">
+            @csrf
+        <a class=logout href="javascript:form1.submit()" class=login>ログアウト<a>
+        </form>
     </header>
     <main>
         <div class=left_menu>

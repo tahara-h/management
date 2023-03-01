@@ -206,7 +206,7 @@ php artisan migrate --env=testing
 
 #### Laravel Debugbar
 
-※ **以下は導入済みです**  
+※ **以下は導入済みです**
 
 Laravelで作成した画面の下にデバッグバーが表示され、様々な情報が見れるようになります。
 
@@ -223,3 +223,15 @@ composer require --dev barryvdh/laravel-debugbar
 # config/debugbar.php を追加。
 php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 ```
+
+# 確認用
+
+URL
+
+http://127.0.0.103/login
+
+ログイン用
+メールアドレス
+yosuke68@example.com
+パスワード
+password

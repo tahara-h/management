@@ -21,9 +21,18 @@ header{
     position: absolute;
     right: 0px;
 }
-.login{
+form{
+    height: 40px;
+    width:200px;
     margin-top: 0px;
     margin-right:10px;
+    position: absolute;
+    right: 0px;
+}
+.logout{
+    position:absolute;
+    top: 0px;
+    right:10px;
     position: absolute;
     right: 0px;
     color:aliceblue;

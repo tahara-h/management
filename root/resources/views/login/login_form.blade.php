@@ -78,6 +78,12 @@
         </ul>
     </div>
   @endif
+  <!-- ログアウト時のメッセージ表示 -->
+  @if(session('logout'))
+  <div class="alert alert-danger">
+        {{ session('logout') }}
+    </div>
+  @endif
   <div class="form-floating">
     <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
     <label for="floatingInput">Email address</label>
