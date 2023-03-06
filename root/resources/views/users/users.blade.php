@@ -55,36 +55,75 @@
     table tr:last-child td:last-child {
         border-radius: 0 0 5px 0;
     }
+    .paginationWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 38px;
+    margin-bottom: 40px;
+    }
+
+    .paginationWrap ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    .paginationWrap ul.pagination li {
+    display: inline;
+    margin-right: 4px;
+    }
+
+    .paginationWrap ul.pagination li a {
+        color: #2f3859;
+        padding: 8px 14px;
+        text-decoration: none;
+    }
+
+    .paginationWrap ul.pagination li a.active {
+        background-color: #4b90f6;
+        color: white;
+        border-radius: 40px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .paginationWrap ul.pagination li a:hover:not(.active) {
+        background-color: #e1e7f0;
+        border-radius: 40px;
+    }
 </style>
 <div>
     <div>
         社員一覧画面
     </div>
     <a href=''>新規登録</a>
-<table>
-    <tr>
-        <th>社員名</th>
-        <th>入社日</th>
-        <th>詳細</th>
-        <th>編集</th>
-    </tr>
-    @foreach($users as $user)
-    <tr>
-        <td>
-            {{$user->first_name}}{{$user->last_name}}
-        </td>
-        <td>
-            {{$user->join_date}}
-        </td>
-        <td>
-            <a href="">詳細</a>
-        </td>
-        <td>
-            <a href="">編集</a>
-        </td>
-    </tr>
-    @endforeach
-</table>
-    {{ $users->links() }}
+    <table>
+        <tr>
+            <th>社員名</th>
+            <th>入社日</th>
+            <th>詳細</th>
+            <th>編集</th>
+        </tr>
+        @foreach($users as $user)
+        <tr>
+            <td>
+                {{$user->first_name}}{{$user->last_name}}
+            </td>
+            <td>
+                {{$user->join_date}}
+            </td>
+            <td>
+                <a href="">詳細</a>
+            </td>
+            <td>
+                <a href="">編集</a>
+            </td>
+        </tr>
+        @endforeach
+    </table>
+    <div>
+        {{-- ページネーション --}}
+        {{ $users->links('pagination::default') }}
+    </div>
 </div>
 @endsection
