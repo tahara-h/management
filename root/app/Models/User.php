@@ -17,6 +17,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // テーブル名
+    protected $table ='users';
+    //可変項目
     protected $fillable = [
         'last_name',
         'first_name',
