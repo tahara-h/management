@@ -1,10 +1,9 @@
-@extends('layout')
-@section('title', '勤怠管理システム(管理者画面)')
+@extends("layout")
+@section('title','勤怠管理システム(管理者画面)')
 @section('left_menu')
     @include('manager_left_menu')
 @endsection
 @section('contents')
-    <!-- 社員一覧用SCC -->
     <style>
         table {
             border-collapse: separate;
@@ -30,7 +29,6 @@
             border-top: 1px solid #3c6690;
             border-bottom: 1px solid #3c6690;
             box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset;
-            width: 200px;
             padding: 10px 0;
         }
 
@@ -40,7 +38,6 @@
             border-bottom: 1px solid #a8b7c5;
             border-top: none;
             box-shadow: 0px -3px 5px 1px #eee inset;
-            width: 25%;
             padding: 10px 0;
         }
 
@@ -93,35 +90,74 @@
             border-radius: 40px;
         }
     </style>
-    <h2>社員一覧画面</h2>
-    <a href="{{ route('showRegisterUser') }}">新規登録</a>
+    <h2>勤怠一覧</h2>
+    <a href="{{route('showRegisterWork')}}">勤怠登録</a>
     <table>
         <tr>
-            <th>社員名</th>
-            <th>入社日</th>
-            <th>詳細</th>
-            <th>編集</th>
+            <th rowspan='2'>日</th>
+            <th rowspan='2'>曜日</th>
+            <th rowspan='2'>始業時刻</th>
+            <th rowspan='2'>終業時刻</th>
+            <th rowspan='2'>調整時間</th>
+            <th rowspan='2'>勤務時間</th>
+            <th colspan='3'>臨時交通費</th>
+            <th colspan='3'>通勤交通費</th>
+            <th rowspan='2'>承認印</th>
         </tr>
-        @foreach ($users as $user)
+        <tr>
+            <th>科目</th>
+            <th>区間</th>
+            <th>金額</th>
+            <th>科目</th>
+            <th>区間</th>
+            <th>金額</th>
+        </tr>
+        @foreach ($works as $work)
             <tr>
                 <td>
-                    {{ $user->first_name }}{{ $user->last_name }}
+                    {{ $work->date}}
                 </td>
                 <td>
-                    {{ $user->join_date }}
+                    曜日を出したい
                 </td>
                 <td>
-                    <a href="/user/{{ $user->id }}">詳細</a>
+                    {{$work->work_start_time}}
                 </td>
                 <td>
-                    <a href="/user/edit/{{$user->id}}">編集</a>
+                    {{$work->work_end_time}}
                 </td>
+                <td>
+                    {{$work->break_time}}
+                </td>
+                <td>
+                    勤務時間を出したい
+                </td>
+                <td>
+                    保留
+                </td>
+                <td>
+                    保留
+                </td>
+                <td>
+                    保留
+                </td>
+                <td>
+                    保留
+                </td>
+                <td>
+                    保留
+                </td>
+                <td>
+                    保留
+                </td>
+                <td>
+                <td>
             </tr>
         @endforeach
     </table>
     <div>
         {{-- 作成したページネーション --}}
-        {{ $users->links('pagination::default') }}
+        {{-- {{ $users->links('pagination::default') }} --}}
         {{-- 元々あるページネーション（隙間がきになる) --}}
         {{-- {{ $users->links() }} --}}
     </div>

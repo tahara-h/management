@@ -21,14 +21,14 @@ header{
     position: absolute;
     right: 0px;
 }
-form{
+/* form{
     height: 40px;
     width:200px;
     margin-top: 0px;
     margin-right:10px;
     position: absolute;
     right: 0px;
-}
+} */
 .logout{
     position:absolute;
     top: 0px;
@@ -58,9 +58,12 @@ span{
     display:flex;
     color:#000;
 }
-.content_list{
+.main-contents{
     display:flex;
     flex-direction: column;
+    width:1000px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 .content_box{
     display:flex;

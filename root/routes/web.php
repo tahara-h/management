@@ -28,9 +28,31 @@ Route::middleware(['guest'])->group(function () {
 // ログイン後のルート
 Route::middleware(['auth'])->group(function () {
     //　ホーム画面
-    Route::view("/","top.manager_top")->name("home");
+    Route::get("/",[ManagementController::class,'selectURL'])->name("home");
     // ログアウト機能
     Route::post('logout',[AuthController::class, 'logout'])->name('logout');
-    //社員管理画面
-    Route::get("/users",[ManagementController::class,'showUsersList'])->name('users');
+    //社員一覧画面の表示
+    Route::get("/users",[ManagementController::class,'showUsersList'])->name('showUsersList');
+    // 社員登録画面の表示
+    Route::get("/user/register",[ManagementController::class,'showRegisterUser'])->name('showRegisterUser');
+    // 社員の登録
+    Route::post("/user/register/edit",[ManagementController::class,'userRegister'])->name('userRegister');
+    //社員詳細情報画面の表示
+    Route::get('/user/{id}',[ManagementController::class,'showUserDetail'])->name('showUserDetail');
+    //社員編集画面を表示
+    Route::get('/user/edit/{id}',[ManagementController::class,'showUserEdit'])->name('showUserEdit');
+    // 社員編集
+    Route::post("/user/update",[ManagementController::class,'userUpdate'])->name('userUpdate');
+    // 休日申請画面の表示
+    Route::get("/holiday/request",[ManagementController::class,'showHolidayRequest'])->name('showHolidayRequest');
+    // 申請一覧の表示
+    Route::get("/application",[ManagementController::class,'showApplicationList'])->name('showApplicationList');
+
+
+    //勤怠一覧画面の表示
+    Route::get("/works",[ManagementController::class,'showWorksList'])->name('showWorksList');
+    // 勤怠登録画面の表示
+    Route::get("/works/register",[ManagementController::class,'showRegisterWork'])->name('showRegisterWork');
+    //勤怠登録
+    Route::post("/works/register/edit",[ManagementController::class,'registerWork'])->name('registerWork');
 });

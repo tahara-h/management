@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -34,6 +33,11 @@ class User extends Authenticatable
         'join_date',
     ];
 
+    // パスワードをハッシュ化するやつ（試作）
+    // public function insertPass($password)
+    // {
+    //     return $this->create(['password' => Hash::make($password)]);
+    // }
     /**
      * The attributes that should be hidden for serialization.
      *

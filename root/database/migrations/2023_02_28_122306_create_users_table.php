@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('first_name',100)->comment('名前');
             $table->string('last_name_kana',)->comment('名字(ふりがな)');
             $table->string('first_name_kana',)->comment('名前(ふりがな)');
-            $table->integer('role_id')->comment('権限');
+            $table->integer('role_id')->comment('権限')->default(1);
             $table->string('prefecture')->comment('都道府県');
             $table->string('address1',255)->nullable(true)->comment('市区町村・番地');
             $table->string('address2',255)->nullable(true)->comment('構造物名・部屋番号');

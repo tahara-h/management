@@ -1,4 +1,4 @@
-
+{{-- ページネーションに使用 --}}
 @if ($paginator->hasPages())
 <div class="paginationWrap">
     <ul class="pagination" role="navigation">
