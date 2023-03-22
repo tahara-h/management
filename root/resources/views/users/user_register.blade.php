@@ -31,10 +31,9 @@
         }
     </style>
     <h2>社員登録</h2>
-    {{-- 登録が完了したらのメッセージ(未完成) --}}
-    @if(session('message_success'))
+    @if(session('exe_msg'))
     <div class="alert alert-success">
-          {{ session('message_success') }}
+          {{ session('exe_msg') }}
       </div>
     @endif
     <form method="POST" action="{{ route('userRegister') }}">

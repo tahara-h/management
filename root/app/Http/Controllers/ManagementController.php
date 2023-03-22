@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support;
 
 class ManagementController extends Controller
 {
@@ -71,6 +72,7 @@ class ManagementController extends Controller
         }
         // 元のページを表示させ、完了のメッセージもSessionで送る
         //メッセージについては保留
+        Session()->flash('exe_msg', '社員登録が完了しました');
         return view('users.user_register');
     }
         /**
