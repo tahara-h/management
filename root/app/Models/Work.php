@@ -13,7 +13,11 @@ class Work extends Model
     // 可変項目(カラム)
     protected $fillable =
     [
+        'user_id',
+        'work_content',
         'work_start_time',
-        'work_end_time'
+        'work_end_time',
+        'date',
+        'status_id'
     ];
 }

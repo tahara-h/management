@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support;
+use Carbon\Carbon;
 
 class ManagementController extends Controller
 {
@@ -19,7 +19,7 @@ class ManagementController extends Controller
         $users = User::paginate(15);
 
 
-        return view("users.users",["users"=> $users]);
+        return view("users.users", ["users" => $users]);
     }
     // 社員登録画面を表示する
     public function showRegisterUser()
@@ -27,17 +27,17 @@ class ManagementController extends Controller
         return view('users.user_register');
     }
     /**
-    * 社員詳細画面を表示する
-    *@param int $id
-    */
+     * 社員詳細画面を表示する
+     *@param int $id
+     */
     public function showUserDetail($id)
     {
         $user = User::find($id);
-        if (is_null($user)){
+        if (is_null($user)) {
             // データベースにデータが入ってなかった場合
             return redirect(route('showUsersList'));
         }
-        return view('users.user_detail',['user'=> $user]);
+        return view('users.user_detail', ['user' => $user]);
     }
     // 社員を登録をする
     public function UserRegister(UsersRequest $request)
@@ -45,9 +45,9 @@ class ManagementController extends Controller
         // パスワードをハッシュ化
         $password = bcrypt($request->password);
         // 文字列を数値に変換(権限の登録に必要)
-        $number =(int) $request->role_id;
+        $number = (int) $request->role_id;
         DB::beginTransaction();
-        try{
+        try {
             // 社員入力フォームから受け取ったデータをデータベースに登録する
             User::create([
                 'last_name' => $request->last_name,
@@ -63,10 +63,9 @@ class ManagementController extends Controller
                 'role_id' => $number
             ]);
             DB::commit();
-
         }
         // ユーザーをデータベースに登録する際何かしらのエラーが発生場合の対処
-        catch(\Throwable $e){
+        catch (\Throwable $e) {
             DB::rollback();
             abort(500);
         }
@@ -75,18 +74,18 @@ class ManagementController extends Controller
         Session()->flash('exe_msg', '社員登録が完了しました');
         return view('users.user_register');
     }
-        /**
-    * 社員編集画面を表示する
-    *@param int $id
-    */
+    /**
+     * 社員編集画面を表示する
+     *@param int $id
+     */
     public function showUserEdit($id)
     {
         $user = User::find($id);
-        if (is_null($user)){
+        if (is_null($user)) {
             // データベースにデータが入ってなかった場合
             return redirect(route('showUsersList'));
         }
-        return view('users.user_edit',['user'=> $user]);
+        return view('users.user_edit', ['user' => $user]);
     }
     // 社員情報を更新する
     public function userUpdate(Request $request)
@@ -94,11 +93,11 @@ class ManagementController extends Controller
         // パスワードをハッシュ化
         $password = bcrypt($request->password);
         // 文字列を数値に変換(権限の登録に必要)
-        $number =(int) $request->role_id;
+        $number = (int) $request->role_id;
         DB::beginTransaction();
-        try{
+        try {
             // 送られたIDのデータだけ取得する。
-            $user =User::find($request->id);
+            $user = User::find($request->id);
             $user->fill([
                 'last_name' => $request->last_name,
                 "first_name" => $request->first_name,
@@ -112,11 +111,11 @@ class ManagementController extends Controller
                 "join_date" => $request->join_date,
                 'role_id' => $number
             ]);
-        $user->save();
-        DB::commit();
+            $user->save();
+            DB::commit();
         }
         // ユーザーをデータベースに登録する際何かしらのエラーが発生場合の対処
-        catch(\Throwable $e){
+        catch (\Throwable $e) {
             DB::rollback();
             abort(500);
         }
@@ -138,8 +137,32 @@ class ManagementController extends Controller
     // 勤怠一覧画面を表示する
     public function showWorksList()
     {
-        $works = work::all();
-        return view('works.works',['works' =>$works]);
+        $id = Auth::user()->id;
+        $year = date('Y');
+        $month = date('m');
+        $works = DB::table('works')
+                        // ->leftJoin('transportation_expenses', 'works.user_id', '=', 'transportation_expenses.user_id')
+                        ->where('works.user_id', '=', $id)
+                        ->whereYear('works.date', date('Y'))
+                        ->whereMonth('works.date', date('m'))
+                        ->get();
+        return view('works.works', ['works' => $works, 'year' => $year, 'month' => $month]);
+    }
+    // 勤怠一覧画面を表示する試作
+    public function showWorksIndex(Request $request)
+    {
+        $id = Auth::user()->id;
+        $year = $request->input('year', date('Y'));
+        $month = $request->input('month', date('m'));
+        $works = DB::table('works')
+                        // joinすると重複したデータが作成されるため一旦補修
+                        // ->Join('transportation_expenses', 'works.user_id', '=', 'transportation_expenses.user_id')transportation_expenses.price
+                        ->where('works.user_id', '=', $id)
+                        ->whereYear('works.date', $year)
+                        ->whereMonth('works.date', $month)
+                        ->select('works.date', 'works.work_start_time', 'works.work_end_time', 'works.break_time')
+                        ->get();
+        return view('works.works', ['works' => $works, 'year' => $year, 'month' => $month]);
     }
     // 勤務時間登録画面を表示する
     public function showRegisterWork()
@@ -150,10 +173,10 @@ class ManagementController extends Controller
     public function selectURL()
     {
         $UserSelect = Auth::user()->role_id;
-        if($UserSelect === 1){
+        if ($UserSelect === 1) {
             return view("top.manager_top");
         }
-        if($UserSelect === 2){
+        if ($UserSelect === 2) {
             return view('top.user_top');
         }
         $error = '参照が上手く行ってない';

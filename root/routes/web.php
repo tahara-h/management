@@ -51,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
 
     //勤怠一覧画面の表示
     Route::get("/works",[ManagementController::class,'showWorksList'])->name('showWorksList');
+    // //勤怠一覧画面の指定した月を表示
+    Route::get("/works/index",[ManagementController::class,'showWorksIndex'])->name('showWorksIndex');
     // 勤怠登録画面の表示
     Route::get("/works/register",[ManagementController::class,'showRegisterWork'])->name('showRegisterWork');
     //勤怠登録

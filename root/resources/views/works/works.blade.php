@@ -91,7 +91,66 @@
         }
     </style>
     <h2>勤怠一覧</h2>
-    <a href="{{route('showRegisterWork')}}">勤怠登録</a>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Open modal for @fat</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+@
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Message:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+    <form action="{{route('showWorksIndex')}}" method='get'>
+        <select name='year'>
+            <option value="2023" {{ $year == 2023 ? 'selected' : '' }}>2023</option>
+            <option value="2024" {{ $year == 2024 ? 'selected' : '' }}>2024</option>
+            <option value="2025" {{ $year == 2025 ? 'selected' : '' }}>2025</option>
+            <option value="2026" {{ $year == 2026 ? 'selected' : '' }}>2026</option>
+            <option value="2027" {{ $year == 2027 ? 'selected' : '' }}>2027</option>
+            <option value="2028" {{ $year == 2028 ? 'selected' : '' }}>2028</option>
+            <option value="2029" {{ $year == 2029 ? 'selected' : '' }}>2029</option>
+            <option value="2030" {{ $year == 2030 ? 'selected' : '' }}>2030</option>
+        </select>年
+        <select name='month'>
+            <option value="1" {{ $month == 1 ? 'selected' : '' }}>1</option>
+            <option value="2" {{ $month == 2 ? 'selected' : '' }}>2</option>
+            <option value="3" {{ $month == 3 ? 'selected' : '' }}>3</option>
+            <option value="4" {{ $month == 4 ? 'selected' : '' }}>4</option>
+            <option value="5" {{ $month == 5 ? 'selected' : '' }}>5</option>
+            <option value="6" {{ $month == 6 ? 'selected' : '' }}>6</option>
+            <option value="7" {{ $month == 7 ? 'selected' : '' }}>7</option>
+            <option value="8" {{ $month == 8 ? 'selected' : '' }}>8</option>
+            <option value="9" {{ $month == 9 ? 'selected' : '' }}>9</option>
+            <option value="10" {{ $month == 10 ? 'selected' : '' }}>10</option>
+            <option value="11" {{ $month == 11 ? 'selected' : '' }}>11</option>
+            <option value="12" {{ $month == 12 ? 'selected' : '' }}>12</option>
+        </select>月
+            <button type='submit'>表示</button>
+    </form>
+        <a class='btn btn-outline-info' href="{{route('showRegisterWork')}}">勤怠登録</a>
+    </div>
     <table>
         <tr>
             <th rowspan='2'>日</th>

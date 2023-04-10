@@ -29,7 +29,7 @@ return new class extends Migration
             $table->rememberToken("remember_token",255)->comment('リメンバートークン');
             $table->date('join_date')->comment('入社日');
             $table->timestamp('created_at')->comment('作成日時');
-            $table->timestamp('updated_at')->comment('更新日時');
+            $table->timestamp('updated_at')->comment('更新日時')->nullable(true);
             $table->softDeletes()->comment('論理削除');
         });
     }

@@ -29,7 +29,7 @@
     <div class=content_box>
         <div class=content_name>勤怠管理</div>
         <div class=content_box_small>
-            <a href="{{route('showWorksList')}}" class="btn btn-primary w-h radies">勤怠一覧</a>
+            <a href="/works" class="btn btn-primary w-h radies">勤怠一覧</a>
         </div>
         <div class=content_box_small>
             <a href="{{route('showRegisterWork')}}" type="button" class="btn btn-primary w-h">勤怠登録</a>
