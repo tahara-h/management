@@ -45,15 +45,6 @@
                 </label>
                 <input name="last_name" id='last_name' class="form-control" type="text">
             </div>
-            {{-- エラーメッセージを入れると上手く表示出来ない。
-            UsersRepuest.phpが原因な気がする。とりあえず保留 --}}
-            {{-- @if($errors->get('last_name'))
-                <div class='text-danger'>
-                    @foreach($errors->get('last_name') as $message)
-                        {{$message}}
-                    @endforeach
-                </div>
-            @endif --}}
             <div class="form-group">
                 <label for="first_name">
                     名

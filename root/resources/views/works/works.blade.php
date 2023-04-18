@@ -1,5 +1,5 @@
-@extends("layout")
-@section('title','勤怠管理システム(管理者画面)')
+@extends('layout')
+@section('title', '勤怠管理システム(管理者画面)')
 @section('left_menu')
     @include('manager_left_menu')
 @endsection
@@ -89,40 +89,33 @@
             background-color: #e1e7f0;
             border-radius: 40px;
         }
+
+        .modalBackground {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+        }
+
+        .modalContent {
+            position: absolute;
+            top: 250px;
+            left: 250px;
+            width: 800px;
+            background-color: #e1e7f0;
+            padding: 20px;
+            display: none;
+        }
+        /* モーダルウィンドウの業務内容入力欄 */
+        .form-control {
+            width: 500px;
+        }
     </style>
     <h2>勤怠一覧</h2>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Open modal for @fat</button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-@
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                <input type="text" class="form-control" id="recipient-name">
-              </div>
-              <div class="mb-3">
-                <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-    <form action="{{route('showWorksIndex')}}" method='get'>
+    <form action="{{ route('showWorksIndex') }}" method='get'>
         <select name='year'>
             <option value="2023" {{ $year == 2023 ? 'selected' : '' }}>2023</option>
             <option value="2024" {{ $year == 2024 ? 'selected' : '' }}>2024</option>
@@ -147,9 +140,56 @@
             <option value="11" {{ $month == 11 ? 'selected' : '' }}>11</option>
             <option value="12" {{ $month == 12 ? 'selected' : '' }}>12</option>
         </select>月
-            <button type='submit'>表示</button>
+        <button type='submit'>表示</button>
     </form>
-        <a class='btn btn-outline-info' href="{{route('showRegisterWork')}}">勤怠登録</a>
+    <div>
+        <div class='modalOpen btn btn-outline-success'>打刻</div>
+        <div class='modalBackground'></div>
+        <div class="modalContent">
+            <h2>日報登録</h2>
+            <div>
+                <?php
+                $week = ['日', '月', '火', '水', '木', '金', '土'];
+                $weekday = $week[date('w')];
+                $today = date('Y年m月d日');
+                echo "$today($weekday)";
+                ?>
+            </div>
+            <div>
+                <label for='startTime'>開始時間</label>
+                <select id='startTime'>
+                    <option selected>09:30</option>
+                    <option>09:00</option>
+                    <option>10:00</option>
+                    <option>10:30</option>
+                    <option>11:30</option>
+                </select>
+                <label for='endTime'>終了時間</label>
+                <select id='endTime'>
+                    <option selected>18:30</option>
+                    <option>18:00</option>
+                    <option>19:00</option>
+                    <option>19:30</option>
+                    <option>20:30</option>
+                </select>
+                <label for='restTime'>休憩時間</label>
+                <select>
+                    <option id='restTime' selected>1:00</option>
+                    <option>00:30</option>
+                    <option>01:30</option>
+                    <option>02:00</option>
+                    <option>02:30</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">業務内容</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+            <a href='' class='modalClose btn btn-secondary btn-sm'>
+                閉じる
+            </a>
+        </div>
+        <a class='btn btn-outline-info' href="{{ route('showRegisterWork') }}">勤怠登録</a>
     </div>
     <table>
         <tr>
@@ -174,19 +214,19 @@
         @foreach ($works as $work)
             <tr>
                 <td>
-                    {{ $work->date}}
+                    {{ $work->date }}
                 </td>
                 <td>
                     曜日を出したい
                 </td>
                 <td>
-                    {{$work->work_start_time}}
+                    {{ $work->work_start_time }}
                 </td>
                 <td>
-                    {{$work->work_end_time}}
+                    {{ $work->work_end_time }}
                 </td>
                 <td>
-                    {{$work->break_time}}
+                    {{ $work->break_time }}
                 </td>
                 <td>
                     勤務時間を出したい
