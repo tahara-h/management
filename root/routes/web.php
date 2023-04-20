@@ -57,4 +57,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get("/works/register",[ManagementController::class,'showRegisterWork'])->name('showRegisterWork');
     //勤怠登録
     Route::post("/works/register/edit",[ManagementController::class,'registerWork'])->name('registerWork');
+        // 多分この書き方の方がいい
+    // Route::prefix('user')->name('showUsersList')->controller(ManagementController::class)->group(function (){
+    //     Route::get('/register', 'showRegisterUser')->name('showRegisterUser');
+    //     Route::post('/update', 'userUpdate')->name('userUpdate');
+    // });
 });
