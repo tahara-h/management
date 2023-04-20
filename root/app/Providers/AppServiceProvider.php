@@ -26,6 +26,5 @@ class AppServiceProvider extends ServiceProvider
     {
         // bootstrapをページネーションに使用
         Paginator::useBootstrapFive();
-        Paginator::useBootstrapFour();
     }
 }
