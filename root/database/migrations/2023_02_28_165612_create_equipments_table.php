@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id()->comment('ID');
             $table->integer('user_id')->comment('申請したユーザーのID');
             $table->dateTime('date')->comment('日付');
-            $table->string('equipment_price')->comment('備品価格');
-            $table->string('equipment_content')->comment('備品内容');
-            $table->integer('equipment_id')->comment('備品種類id');
+            $table->string('price')->comment('備品価格');
+            $table->string('content')->comment('備品内容');
+            $table->integer('equipment_type_id')->comment('備品種類id');
             $table->dateTime('purchase_date')->comment('備品購入日');
             $table->timestamp('created_at')->comment('作成日時');
             $table->timestamp('updated_at')->comment('更新日時');
