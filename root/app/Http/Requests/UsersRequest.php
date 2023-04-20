@@ -25,16 +25,16 @@ class UsersRequest extends FormRequest
     public function rules()
     {
         return [
-            'last_name' => 'required | max:100',
-            'first_name' =>'required | max:100',
-            'last_name_kana' =>'required | max:100',
-            'first_name_kana' =>'required | max:100',
-            'prefecture' =>'required | max:255',
-            'address1' =>'required | max:255',
-            'address2' =>'required | max:255',
-            'email' =>'required | max:255 | unique:users,email',
-            'password' =>'required | max:100',
-            'join_date' =>'required'
+            'last_name' => 'required|max:100',
+            'first_name' =>'required|max:100',
+            'last_name_kana' =>'required|max:100',
+            'first_name_kana' =>'required|max:100',
+            'prefecture' =>'required|max:255',
+            'address1' =>'required|max:255',
+            'address2' =>'required|max:255',
+            'email' =>'required|max:255|unique:users,email',
+            'password' =>'required|max:100',
+            'join_date' =>'required',
         ];
     }
     public function messages()
