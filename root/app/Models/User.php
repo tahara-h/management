@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,12 +16,28 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // テーブル名
+    protected $table ='users';
+    //可変項目
     protected $fillable = [
-        'name',
+        'last_name',
+        'first_name',
+        'last_name_kana',
+        'first_name_kana',
+        'role_id',
+        'prefecture',
+        'address1',
+        'address2',
         'email',
         'password',
+        'join_date',
     ];
 
+    // パスワードをハッシュ化するやつ（試作）
+    // public function insertPass($password)
+    // {
+    //     return $this->create(['password' => Hash::make($password)]);
+    // }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -38,7 +53,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 }

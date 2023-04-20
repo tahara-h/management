@@ -79,7 +79,7 @@ Laravel関連のコマンドはDockerで用意した、WEBサーバー（コン�
 ```bash
 # ターミナルで実行
 ## WEBサーバーに入るコマンド（-itの後に入る名称はコンテナ名「{NAME_PREFIX}-web」）
-docker exec -it laravel9-web bash
+docker exec -it management-web bash
 ```
 
 VSCodeの[Docker拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)が入っている場合、対象コンテナの「Attach Shell」でも開けます。  
@@ -206,7 +206,7 @@ php artisan migrate --env=testing
 
 #### Laravel Debugbar
 
-※ **以下は導入済みです**  
+※ **以下は導入済みです**
 
 Laravelで作成した画面の下にデバッグバーが表示され、様々な情報が見れるようになります。
 
@@ -223,3 +223,15 @@ composer require --dev barryvdh/laravel-debugbar
 # config/debugbar.php を追加。
 php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 ```
+
+# 確認用
+
+URL
+
+http://127.0.0.103/login
+
+ログイン用
+メールアドレス
+yosuke68@example.com
+パスワード
+password
