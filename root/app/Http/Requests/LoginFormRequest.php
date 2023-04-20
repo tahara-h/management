@@ -24,7 +24,9 @@ class LoginFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required|max:255',
+            'email'=>'required|max:255|email:filter',
+            // 実装環境は下記の方がいい
+            // 'email'=>'required|max:255|email:filter,dns',
             'password' => 'required'
         ];
     }
