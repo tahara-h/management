@@ -14,11 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('times', function (Blueprint $table) {
-            //以下は保留なんかIDなのにVARCHRだったり、型すらなかったりで自分で考えた方が良さそう
-            //しかし考えてやった方がいいのか従った方がいいのか不明なため報告会で確認。
-            //先に優先して形にする！
             $table->id()->comment('ID');
-            $table->string('user_id')->comment('ソートID');
+            $table->string('sort_id')->comment('ソートID');
             $table->string('minutes')->comment('分');
             $table->timestamp('created_at')->comment('作成日時');
         });
