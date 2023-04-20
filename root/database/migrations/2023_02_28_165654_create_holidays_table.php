@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('holidays', function (Blueprint $table) {
             $table->id()->comment('ID');
-            $table->dateTime('holiday_date')->comment('対象年月日');
-            $table->string('holiday_name')->comment('名称');
+            $table->dateTime('date')->comment('対象年月日');
+            $table->string('name')->comment('名称');
             $table->timestamp('created_at')->comment('作成日時');
         });
     }
